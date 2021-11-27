@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Socket.io #1</title>
+  <title>Socket.io #2</title>
   <link rel="shortcut icon" type="image/png" href="images/ico_full.png"/>
   <link rel="stylesheet" href="stylesheet/prism.css">
   <link rel="stylesheet" href="stylesheet/style.css">
@@ -20,7 +20,7 @@
           <h1>SocketIO<br> Fiche 2</h1>
         </div>
       </div>
-      <p>Au courant de cette session nous allons explorer le pouvoir du <i>multijoueur</i> avec la librairie <b>socket.io</b></p>
+      <p>Au courant de cette session, nous allons explorer le pouvoir de la librairie <b>socket.io</b> qui permet à plusieurs navigateurs 💻📱 de communiquer entre eux. <br> Objectif: créer un <em>chat</em>! 💬</p>
     </div>
   </div>
 
@@ -54,19 +54,257 @@
         <div class="card-header" id="heading2">
           <h2 class="mb-0">
             <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-              Étape 2 - Des formulaires 📝
+              Étape 2 - Une belle interface = un beau site web <i class="fab fa-html5"></i>!
             </button>
           </h2>
         </div>
         <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#accordionExample">
           <div class="card-body">
-          <p>Pour que ton chat soit joli, on va créer une belle interface. Pour cela, retrouve ton projet <b>Repl.it</b> côté client.</p>
+          <p>Pour l'instant, ton chat fonctionne, mais d'une console à une autre. C'est chouette... mais pas idéal pour pouvoir <em>chatter</em> avec tes amis.</p>
+          <p>Ce qu'il nous faudrait, c'est un beau site web, avec une chouette interface pour écrire nos messages et voir ceux de nos amis.</p>
+          <p>Qui dit site web, dit... <b>HTML, CSS</b> et <b>JavaScript</b>!</p>
+          <p>On va donc créer <b>un nouveau projet repl.it</b> qui va remplacer notre ancien projet du côté <b>Client</b>. Notre nouveau projet sera fait en HTML, CSS et JS, alors choisis bien les langages:</p>
+          <img src="./images/new_repl.png" class="img-shadow">
 
-          <p>Normalement, tu as un fichier JS, et deux fichier json (<code>package.json</code> et <code>package-lock.json</code>.Ajoute un fichier HTML et un fichier CSS.</p>
+          <p>Te voilà avec un projet de site web comme on les connaît bien! Vois-tu les 3 fichiers habituels? <code class="language-js">index.html</code>, <code class="language-js">script.js</code> et <code class="language-js">style.css</code></p>
 
-          <p>Dans ton fichier HTML, il faut ajouter un formulaire avec une case vide pour que les utilisateurs puissent écrire leurs messages et un bouton pour envoyer les messages.</p>
+          <img src="./images/3_files.png" class="img-shadow">
 
-          <img src="./images/chat_interface.png">
+
+          </div>
+        </div>
+      </div>  <!-- end of card -->
+
+      <div class="card">
+        <div class="card-header" id="heading3">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+              Étape 3 - Un formulaire 📝 pour écrire des messages
+            </button>
+          </h2>
+        </div>
+        <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#accordionExample">
+          <div class="card-body">
+                    <p>Dans notre fichier HTML, on va créer la base de l'interface de notre chat. Voici un exemple d'interface:</p>
+
+          <img src="./images/chat_interface.png" class="img-shadow">
+
+          <p>Tu peux commencer par coder la partie où tes utilsateurs vont écrire leur message:</p>
+
+          <img src="./images/form.png" class="img-shadow">
+
+          <p>Comment coder cela? Ça te rappelle peut-être un autre défi qu'on a fait en web développement? Eh oui, les formulaires dans le défi <a href="https://techieslab.github.io/madlib_instructions/" target="_blank">Madlibs</a>!</p>
+
+          <p>À toi de coder ton formulaire!</p>
+
+          <div class="alert alert-warning" role="alert">
+            <p>
+              <i class="fas fa-exclamation-circle"></i>
+              N'enlève pas la ligne <code class="language-html">&lt;script src="script.js">&lt;/script></code> dans ton fichier <code>index.html</code>. Tu en auras besoin plus tard.
+            </p>
+          </div>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint3a" role="button" aria-expanded="false" aria-controls="collapseHint3a">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint3a">
+            <div class="card card-body">
+              <p>Ton code pourrait ressembler à ceci:</p>
+              <pre class=language-html>
+                <code class="language-html">
+                  &lt;form>
+                    &lt;input type="text">
+                    &lt;input type="button" value="Envoyer">
+                  &lt;/form>
+                </code>
+              </pre>
+            </div>
+          </div>
+
+          <p>Lorsque tu appuies sur ton bouton "Envoyer", rien ne se passe? C'est normal! Nous allons avoir besoin du JavaScript pour communiquer avec le serveur.</p>
+
+          <p>Par contre, essaie de faire en sorte que ton formulaire apparaisse toujours au bas de ton écran.</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint3b" role="button" aria-expanded="false" aria-controls="collapseHint3b">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint3b">
+            <div class="card card-body">
+            <p>Tu pourrais avoir besoin de la propriété <b>CSS</b> suivante:</p>
+            <pre class="language-css">
+              <code class="language-css">
+                position: fixed;
+              </code>
+            </pre>
+            </div>
+          </div>
+
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer3b" role="button" aria-expanded="false" aria-controls="collapseAnswer3b">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer3b">
+            <div class="card card-body">
+              <img class="img-shadow" src="./images/form-replit.png"></img>
+              <p>Voici de quoi a l'air mon <b>HTML</b>:</p>
+                <pre class=language-html>
+                <code class="language-html">
+                  &lt;form>
+                    &lt;input type="text">
+                    &lt;input type="button" value="Envoyer">
+                  &lt;/form>
+                </code>
+                </pre>
+
+              <p>Et voici de quoi a l'air mon <b>CSS</b>:</p>
+              <pre class="language-css">
+              <code class="language-css">
+                form {
+                  position: fixed;
+                  bottom: 0;
+                  padding: 10px;
+                  background-color:bisque;
+                  width: 100%;
+                }
+              </code>
+            </pre>
+            <p>Bien sûr, tu peux choisir une autre couleur d'arrière-plan!</p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>  <!-- end of card -->
+      <div class="card">
+        <div class="card-header" id="heading4">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+              Étape 4 - Quelques "faux" messages...
+            </button>
+          </h2>
+        </div>
+        <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#accordionExample">
+          <div class="card-body">
+          <p>On va maintenant coder l'inteface pour les messages. Pour l'instant, ce ne seront pas des "vrais" messages qui nous viennent de notre serveur, car nous n'avons pas écrit le code JS pour relier les deux projets.</p>
+
+          <img src="./images/chat_interface.png" class="img-shadow">
+
+          <p>On va faire semblant que dans notre site, il y a déjà une conversation et que quelques messages ont été échangés. Note dans cet exemple d'interface qu'il y a des messages alignés à gauche (en blanc) et d'autres alignés à droite (en bleu). À ton avis, pourquoi cette distinction?</p>
+
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer4a" role="button" aria-expanded="false" aria-controls="collapseAnswer4a">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer4a">
+            <div class="card card-body">
+              <p>Pour distinguer les messages que l'utilisatrice écrit (à droite, en bleu) de ceux qu'elle reçoit de ses amis (à gauche, en blanc).</p>
+            </div>
+          </div>
+
+          <p>À ton tour, essaie de coder les deux premiers messages des amis (à gauche)! Je te conseille vivement d'utiliser des <code class="language-html">&lt;div>&lt;/div></code> pour cela.</p>
+
+          <img class="img-shadow" src="./images/friends-messages.png"></img>
+
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer4b" role="button" aria-expanded="false" aria-controls="collapseAnswer4b">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer4b">
+            <div class="card card-body">
+              <p>Dans ton HTML, il est vraiment important d'emboîter chaque message dans une <code class="language-html">&lt;div>&lt;/div></code> à soi. Par ailleurs, je donne la même <code class="language-js">class</code> à chacune de ces <code class="language-js">div</code> pour pouvoir toutes les styliser de la même façon:</p>
+              <pre class=language-html>
+                <code class="language-html">
+                  &lt;div id="messages">
+                    &lt;div class="friend-message">
+                      Salut, ça va? Regarde le beau chat que j'ai codé!
+                    &lt;/div>
+                    &lt;div class="friend-message">
+                      J'espère que tu vas aimer!
+                    &lt;/div>
+                  &lt;/div>
+                </code>
+              </pre>
+
+              <p>En conséquence, je peux avoir ceci dans mon CSS:</p>
+              <pre class="language-css">
+              <code class="language-css">
+                .friend-message {
+                  background-color: #708d81;
+                  color: white;
+                  padding: 10px;
+                  margin: 10px;
+                  width: 60%;
+                }
+              </code>
+              </pre>
+            </div>
+          </div>
+
+          <p>Tu peux maintenant coder un ou deux message de ton utilisatrice. Ce sera plus compliqué, car il faut que ces messages soit alignés... à droite de ton écran!</p>
+
+          <img src="./images/friends-me-mess.png" class="img-shadow">
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint4a" role="button" aria-expanded="false" aria-controls="collapseHint4a">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint4a">
+            <div class="card card-body">
+              <p>Tu auras besoin d'une nouvelle classe CSS dans laquelle tu pourrais utiliser la propriété <code class="language-css">float: right;</code></p>
+            </div>
+          </div>
+
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer4c" role="button" aria-expanded="false" aria-controls="collapseAnswer4c">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer4c">
+            <div class="card card-body">
+              <p>J'ai donné une nouvelle <code class="language-js">class="me-message"</code> à chacune des messages de mon utilisatrice pour pouvoir toutes les styliser autrement que les messages des amis:</p>
+              <pre class=language-html>
+                <code class="language-html">
+                  &lt;div id="messages">
+                    &lt;div class="friend-message">
+                      Salut, ça va? Regarde le beau chat que j'ai codé!
+                    &lt;/div>
+                    &lt;div class="friend-message">
+                      J'espère que tu vas aimer!
+                    &lt;/div>
+                    &lt;div class="me-message">
+                      Wow, c'est super!
+                    &lt;/div>
+                    &lt;div class="me-message">
+                      Bravo, dis!
+                    &lt;/div>
+                  &lt;/div>
+                </code>
+              </pre>
+
+              <p>En conséquence, je peux rajouter ceci dans mon CSS:</p>
+              <pre class="language-css">
+              <code class="language-css">
+                .me-message {
+                  background-color: #8d0801;
+                  color: white;
+                  padding: 10px;
+                  margin: 10px;
+                  width: 60%;
+                  float: right;
+                }
+              </code>
+              </pre>
+            </div>
+          </div>
+
+          </div>
+        </div>
+      </div>  <!-- end of card -->
+
+      <div class="card">
+        <div class="card-header" id="heading5">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+              Étape 5 - Envoyer un "vrai" message au serveur ✉️
+            </button>
+          </h2>
+        </div>
+        <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
+          <div class="card-body">
+
           </div>
         </div>
       </div>  <!-- end of card -->
