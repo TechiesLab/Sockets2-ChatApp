@@ -298,12 +298,175 @@
         <div class="card-header" id="heading5">
           <h2 class="mb-0">
             <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-              Étape 5 - Envoyer un "vrai" message au serveur ✉️
+              Étape 5 -Fais apparaître tes messages dans le chat!
             </button>
           </h2>
         </div>
         <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#accordionExample">
           <div class="card-body">
+            <p>Pour l'instant, lorsque tu tapes quelque chose dans le formulaire et que tu appuis sur le bouton "Envoyer", rien ne se passe! Sniff, sniff!😟</p>
+
+            <p>On va changer cela avec un peu de JavaScript! Dans ton fichier <code>script.js</code>, ajoute un <em>déclencheur</em> ou un <em>écouteur</em>: le navigateur doit "écouter" voir si l'utilisateur (toi) clique sur le bouton "Envoyer".Te rappelles-tu comment faire pour coder un déclencheur/écouteur?</p>
+
+            <p>Dans le défi <a href="https://techieslab.github.io/madlib_instructions/" target="_blank">Madlibs</a>, tu as déjà codé un déclencheur pour le bouton "Raconte-moi une histoire". En anglais, on appelle cela un <em>eventListener</em>.</p>
+
+            <p>Tu peux commencer par un déclencheur qui va simplement logguer le message dans la console lorsqu'on clique sur le bouton:</p>
+
+            <p>Le code JavaScript de base à ajouter dans ton fichier <code>script.js</code> est le suivant:</p>
+
+            <pre>
+              <code class="language-js">
+                function addMyMessage() {
+                  // Code à écrire
+                }
+
+                const submitButton = document.getElementById("submit");
+                submitButton.addEventListener(XXX, addMyMessage);
+              </code>
+            </pre>
+
+            <p>Les trois premières lignes définissent une fonction <code class="language-js">addMyMessage()</code> qu'on va bientôt compléter. La ligne suivante signifie qu'on récupère (<code class="language-js">get</code>) dans notre fichier HTML la balise qui a l'<b>id</b> "submit". Rajoute l'id "submit" au bon endroit.</p>
+
+            <p>
+              <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint5a" role="button" aria-expanded="false" aria-controls="collapseHint5a">Indice</a>
+            </p>
+            <div class="collapse mb-3" id="collapseHint5a">
+              <div class="card card-body">
+              <p>Voici la syntaxe: <code class="language-js">id="submit"</code></p>
+              </div>
+            </div>
+
+            <p>
+              <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer5a" role="button" aria-expanded="false" aria-controls="collapseAnswer5a">Réponse</a>
+            </p>
+            <div class="collapse mb-3" id="collapseAnswer5a">
+              <div class="card card-body">
+                <p>Dans ton fichier <code>index.html</code>, trouve la balise <code class="language-html">&lt;input type="button" value="Envoyer"></code> et ajoutes-y ton <b>id</b>: <code class="language-html">&lt;input type="button" value="Envoyer" id="submit"></code></p>
+              </div>
+            </div>
+
+            <p>La dernière ligne du code JavaScript indique de déclencher la fonction <code class="language-js">addMyMessage</code> quand l'utlisateur fait quelque-chose <code class="language-js">XXX</code>. C'est l'événement déclencheur. Voici plusieurs événements possibles:</p>
+
+            <ul>
+              <li><code>mouseover</code>: l'utilisatrice passe sa souris par-dessus un élément de la page web mais <em>sans cliquer</em></li>
+              <li><code>click</code>: l'utilisateur clique sur un élément de la page</li>
+              <li><code>scroll</code> l'utilisatrice fait défiler la page <img src="./images/mouse.jpg"></li>
+              <li><code>drag</code> l'utlisateur glisse une section de texte</li>
+            </ul>
+
+            <p>Remplace les <code class="language-js">XXX</code> par le bon événement.</p>
+
+            <div class="alert alert-warning" role="alert">
+              <p>
+                <i class="fas fa-exclamation-circle"></i>
+                N'oublie pas les guillemets autour de ton événement. Par exemple, on écrira <code class="language-js">"scroll"</code> et non pas <code class="language-js">scroll</code>
+              </p>
+            </div>
+
+            <p>
+              <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer5b" role="button" aria-expanded="false" aria-controls="collapseAnswer5b">Réponse</a>
+            </p>
+            <div class="collapse mb-3" id="collapseAnswer5b">
+              <div class="card card-body">
+                <p>Il s'agit de l'évément <code class="language-js">"click"</code> bien entendu!</p>
+                <code class="language-js">submitButton.addEventListener("click", addMyMessage);</code>
+              </div>
+            </div>
+
+            <p>Maintenant, on peut coder la fonction <code class="language-js">addMyMessage</code>. Tout d'abord cette fonction va simplement afficher un texte dans la console. N'importe quel texte... tu choisis!</p>
+
+            <img src="./images/console_message.gif" class="img-shadow">
+
+            <p>
+              <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint5b" role="button" aria-expanded="false" aria-controls="collapseHint5b">Indice</a>
+            </p>
+            <div class="collapse mb-3" id="collapseHint5b">
+              <div class="card card-body">
+              <p>Pour afficher quelque-chose dans la console, on utilise <code class="language-js">console.log("beau texte de ton choix")</code>.</p>
+              </div>
+            </div>
+
+            <p>Ok, tu maîtrise la console! Mais peux-tu faire apparaître dans le console tous les messages que tu écris dans ton chat?? Plus dur!!!</p>
+            <img src="./images/cons_3mess.gif" class="img-shadow">
+
+            <p>Pour cela, tu devras d'abord récupérer (<code class="language-js">getElementById</code>) dans notre fichier HTML la balise de la boîte de texte. Ce n'est pas une mauvaise idée de lui donner son propre <b>id</b>, comme ceci, par exemple:</p>
+
+            <pre>
+              <code class="language-html">
+               &lt;input type="text" id="message">
+              </code>
+            </pre>
+
+            <p>Et dans <code>script.js</code>, tu peux maintenant récupérer l'élément <code class="language-js">input</code> qui a l'<b>id</b> <code class="language-js">"message"</code>.</p>
+
+            <p>
+              <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint5c" role="button" aria-expanded="false" aria-controls="collapseHint5c">Indice</a>
+            </p>
+            <div class="collapse mb-3" id="collapseHint5c">
+              <div class="card card-body">
+                <pre>
+                  <code class="language-js">
+                    const message = document.getElementById('message');
+
+                    function addMyMessage() {
+                      // Code à écrire
+                      console.log("mais qu'il est beau ce chat")
+                    }
+                  </code>
+                </pre>
+              </div>
+            </div>
+
+            <p>Maintenant, logue dans ta console le message que tu as écrit. Indice, tu vas devoir récupérer sa <em>valeur</em>...</p>
+
+            <p>
+              <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer5c" role="button" aria-expanded="false" aria-controls="collapseAnswer5c">Réponse</a>
+            </p>
+            <div class="collapse mb-3" id="collapseAnswer5c">
+              <div class="card card-body">
+              <pre>
+                <code class="language-js">
+                const message = document.getElementById('message');
+
+                function addMyMessage() {
+                  // Code à écrire
+                  console.log(message.value)
+
+                }
+                </code>
+              </pre>
+              </div>
+            </div>
+
+            <p>Wow! On a fait du chemin! Dernière, dernière sous-étape: faire apparaître le message dans le chat. Pour cela, le <code class="language-js">console.log()</code> ne suffit plus! Il faut injecter de l'HTML.</p>
+            <img src="./images/chat_3mess.gif" class="img-shadow">
+            <p>
+              <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint5d" role="button" aria-expanded="false" aria-controls="collapseHint5d">Indice</a>
+            </p>
+            <div class="collapse mb-3" id="collapseHint5d">
+              <div class="card card-body">
+                <p>Regarde la fonction <a href="https://developer.mozilla.org/fr/docs/Web/API/Element/insertAdjacentHTML" target="_blank"><code class="language-js">.insertAdjacentHTML()</code></a></p>
+              </div>
+            </div>
+
+
+
+
+          </div>
+        </div>
+      </div>  <!-- end of card -->
+
+      <div class="card">
+        <div class="card-header" id="heading6">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+              Étape 6 - Se connecter au serveur et envoyer un "vrai" message au serveur ✉️
+            </button>
+          </h2>
+        </div>
+        <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
+          <div class="card-body">
+          <p>Grâce à JavaScript et à la librairie <code>socket.io</code>, on va pouvoir envoyer des messages à notre serveur.</p>
 
           </div>
         </div>
