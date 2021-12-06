@@ -386,7 +386,7 @@
               </div>
             </div>
 
-            <p>Ok, tu maîtrise la console! Mais peux-tu faire apparaître dans le console tous les messages que tu écris dans ton chat?? Plus dur!!!</p>
+            <p>Ok, tu maîtrises la console! Mais peux-tu faire apparaître dans le console tous les messages que tu écris dans ton chat?? Plus dur!!!</p>
             <img src="./images/cons_3mess.gif" class="img-shadow">
 
             <p>Pour cela, tu devras d'abord récupérer (<code class="language-js">getElementById</code>) dans notre fichier HTML la balise de la boîte de texte. Ce n'est pas une mauvaise idée de lui donner son propre <b>id</b>, comme ceci, par exemple:</p>
@@ -466,7 +466,60 @@
         </div>
         <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
           <div class="card-body">
-          <p>Grâce à JavaScript et à la librairie <code>socket.io</code>, on va pouvoir envoyer des messages à notre serveur.</p>
+          <p>Lorsque tu écris un message dans le chat, il apparaît sur ta page web. Maintenant, on va aussi le faire apparaître dans <b>la console de notre serveur</b> grâce à la librairie <code>socket.io</code>.</p>
+          <p>Assure-toi que tu aies deux onglets ouverts dans ton navigateur:</p>
+          <ol>
+            <li>ton projet repl.it pour le <b>client</b></li>
+            <li>ton "vieux" projet repl.it pour le <b>serveur</b></li>
+          </ol>
+
+          <h3>Partie client</h3>
+
+          <p>Dans ton projet client, on va d'abord spécifier où trouver la librairie <code>socket.io</code> dans notre fichier <code>index.html</code>. À la toute fin de l'élément <code>&lt;body></code>, ajoute cet élément <code>&lt;script></code>:</p>
+          <pre>
+            <code class="language-js">
+              &lt;body>
+                &lt;!-- ton chouette code -->
+                &lt;script src="https://cdn.socket.io/4.4.0/socket.io.min.js" integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj" crossorigin="anonymous"></script>
+                &lt;script src="script.js"></script>
+              &lt;/body>
+            </code>
+          </pre>
+
+          <p>Ensuite, dans le fichier <code>script.js</code>, ajoute la connection à la librairie <code>io</code> ainsi:</p>
+
+          <pre>
+            <code class="language-js">
+            let socket = io("url_de_ton_serveur");
+            </code>
+          </pre>
+
+          <div class="alert alert-warning" role="alert">
+            <p>
+              <i class="fas fa-exclamation-circle"></i>
+              Tu dois remplacer <code class="language-js">"url_de_ton_serveur"</code> par l'adresse (l'url) de ton projet repl.it pour le <b>serveur</b>. Moi, par exemple c'est ceci:
+
+              <pre>
+                <code class="language-js">
+                let socket = io("https://chattlserver.margotechieslab.repl.co/");
+                </code>
+              </pre>
+
+              Voici où j'ai trouvé l'adresse: <img src="./images/url_serveur.png">
+            </p>
+          </div>
+
+          <p>Dernière chose pour le client: on va lui demander d'afficher son numéro de connection lorsqu'il se connecte au serveur. Ça sera utile par la suite pour l'identifier, surtout lorsqu'il y aura plusieurs clients qui parleront au serveur!</p>
+
+          <pre>
+            <code class="language-js">
+            socket.on('connect', function() {
+              console.log(socket.id)
+            })
+            </code>
+          </pre>
+
+          <p>Pour l'instant, ce code n'affiche rien dans la console, car la partie serveur n'est pas encore codée. Allons-y!</p>
 
           </div>
         </div>
