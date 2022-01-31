@@ -460,18 +460,23 @@
         <div class="card-header" id="heading6">
           <h2 class="mb-0">
             <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
-              Étape 6 - Se connecter au serveur et envoyer un "vrai" message au serveur ✉️
+              Étape 6 - Connection entre le client HTML et le serveur 👉👈
             </button>
           </h2>
         </div>
         <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordionExample">
           <div class="card-body">
-          <p>Lorsque tu écris un message dans le chat, il apparaît sur ta page web. Maintenant, on va aussi le faire apparaître dans <b>la console de notre serveur</b> grâce à la librairie <code>socket.io</code>.</p>
-          <p>Assure-toi que tu aies deux onglets ouverts dans ton navigateur:</p>
-          <ol>
-            <li>ton projet repl.it pour le <b>client</b></li>
-            <li>ton "vieux" projet repl.it pour le <b>serveur</b></li>
-          </ol>
+          <p>Lorsque tu écris un message dans le chat, il apparaît sur ta page web. Maintenant, on aimerait que le <b>serveur</b> puisse aussi recevoir le message et le faire apparaître dans sa console grâce à la librairie <code>socket.io</code>. Pour cela, il faut que le client HTML et le serveur soit connectés.</p>
+
+          <div class="alert alert-warning" role="alert">
+            <p>
+              <i class="fas fa-lightbulb"></i> À partir de maintenant, assure-toi que tu aies toujours deux onglets ouverts dans ton navigateur:
+              <ol>
+                <li>ton projet repl.it pour le <b>client</b></li>
+                <li>ton "vieux" projet repl.it pour le <b>serveur</b></li>
+              </ol>
+            </p>
+          </div>
 
           <h3>Partie client</h3>
 
@@ -520,6 +525,101 @@
           </pre>
 
           <p>Pour l'instant, ce code n'affiche rien dans la console, car la partie serveur n'est pas encore codée. Allons-y!</p>
+
+          <h3>Partie serveur</h3>
+
+          <p>Reprends ton premier projet Repl.it de serveur. Le code qui établit ton serveur doit plus ou moins avoir l'air de ceci:</p>
+
+          <pre>
+            <code class="language-js">
+              const express = require('express');
+              const http = require('http');
+              const socket = require('socket.io');
+
+              const app = express();
+              const server = http.Server(app);
+              const io = socket(server);
+
+              server.listen(3000, function() {
+                console.log("Je suis le serveur et j'écoute vos demandes!");
+              });
+
+              io.on('connection', function(connection){
+                console.log("il y a un nouveau client");
+                connection.on('message', function(data) {
+                  io.emit("broadcast", data);
+                });
+              });
+            </code>
+          </pre>
+
+          <p>La première chose à faire, c'est ajouter au tout tout début de ton code la ligne suivante:</p>
+
+          <pre>
+            <code class="language-js">
+              const cors = require('cors');
+            </code>
+          </pre>
+
+          <p>Ensuite, tu dois modifier ta variable <code class="language-js">io</code>. Remplace la ligne <code class="language-js">const io = socket(server);</code> par ce code:</p>
+
+          <pre>
+            <code class="language-js">
+              const io = socket(server, {
+                cors: {
+                  origin: "*",
+                  methods: ["GET", "POST"]
+                }
+              });
+            </code>
+          </pre>
+
+          <p>C'est quoi ces trucs de <code class="language-js">cors</code>? En gros, c'est un mécanisme de sécurité pour les serveurs. Sur des sites importants, certains ordinateurs clients pourraient envoyer des requêtes malicieuses et le but c'est de vérifier l'origine des requêtes. Comme notre chat n'est pas (encore!) connu dans le monde entier, on peut baisser nos gardes et accepter les requêtes de partout :)</p>
+
+          <p>Notre serveur est maintenant prêt à écouter les clients HTML! Tu peux lancer ton serveur en appuyant sur le bouton RUN. Retourne sur l'onglet de ton client HTML et relance le projet. Dans la console du <b>client</b>, tu devrais voir apparaître l'<code class="language-js">id</code> de ton client. C'est une longue suite de caractères avec des lettres et des chiffres:</p>
+          <img src="./images/client-id.png" class="img-shadow">
+
+          <p>Du côté de ton <b>serveur</b>, tu devrais aussi voir un message dans ta console:</p>
+          <img src="./images/client-serveur-console.png" class="img-shadow">
+
+          <p>Yihaaaaa 💪, le serveur et le client sont connectés. Dernière petite manip: affichons l'identifiant du client (<code class="language-js">id</code>) dans la console du serveur.</p>
+          <img src="./images/serveur-connection-id.png" class="img-shadow">
+
+          <div class="alert alert-warning" role="alert">
+            <p>
+              <i class="fas fa-exclamation-circle"></i>
+              Note que l'<code class="language-js">id</code> de ton client va changer si tu relances ton serveur. Ce n'est pas un problème!
+              <br>
+              <img src="./images/evolving-id.png" class="img-shadow">
+            </p>
+          </div>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint6a" role="button" aria-expanded="false" aria-controls="collapseHint6a">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint6a">
+            <div class="card card-body">
+              <p>Pour afficher l'<code class="language-js">id</code> de notre client dans la console du serveur, on peut utiliser la variable <code class="language-js">connection</code> et faire ressortir l'<code class="language-js">id</code>comme ceci: <code class="language-js">connection.id</code></p>
+            </div>
+          </div>
+
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer6a" role="button" aria-expanded="false" aria-controls="collapseAnswer6a">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer6a">
+            <div class="card card-body">
+              <p>Dans le code de ton serveur, tu peux écrire quelque chose comme ceci:</p>
+              <pre>
+                <code class="language-js">
+                  io.on('connection', function(connection) {
+                    console.log("il y a un nouveau client: " + connection.id);
+                    })
+                  })
+                </code>
+              </pre>
+            </div>
+          </div>
+
 
           </div>
         </div>
