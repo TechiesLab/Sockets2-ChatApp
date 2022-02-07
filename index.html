@@ -446,6 +446,58 @@
             <div class="collapse mb-3" id="collapseHint5d">
               <div class="card card-body">
                 <p>Regarde la fonction <a href="https://developer.mozilla.org/fr/docs/Web/API/Element/insertAdjacentHTML" target="_blank"><code class="language-js">.insertAdjacentHTML()</code></a></p>
+                <p>La documentation indique que cette fonction s'utilise ainsi: <code class="language-js">element.insertAdjacentHTML(position, text);</code>. À toi de trouver par quoi remplacer:</p>
+
+                <ol>
+                  <li><code class="language-js">element</code> (il s'agit d'une balise dans ton HTML)</li>
+                  <li><code class="language-js">position</code> (<code class="language-js">'beforebegin'</code>, <code class="language-js">'afterbegin'</code>, <code class="language-js">'beforeend'</code> ou <code class="language-js">'afterend'</code>)</li>
+                  <li><code class="language-js">text</code> (le petit morceau d'html que tu vas insérer dans ton fichier html)</li>
+                </ol>
+              </div>
+            </div>
+
+            <p>
+              <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint5e" role="button" aria-expanded="false" aria-controls="collapseHint5e">Indice <em>element</em></a>
+            </p>
+            <div class="collapse mb-3" id="collapseHint5e">
+              <div class="card card-body">
+                <p>Pour l'élément, il faut que tu trouves la balise HTML qui englobe tous tes messages. Je te parie que c'est une <code class="language-js">div</code> et qu'elle a un <code class="language-js">id</code>.</p>
+                <p>Je te donne un exemple. Si j'ai ce code <code class="language-js">html</code>:</p>
+                <pre>
+                  <code class="language-js">
+                    &lt;div id="messages">
+                      &lt;div class="friend-message">
+                        Salut, ça va? Regarde le beau chat que j'ai codé!
+                      &lt;/div>
+                      &lt;div class="friend-message">
+                        J'espère que tu vas aimer!
+                      &lt;/div>
+                      &lt;div class="me-message">
+                        Wow, c'est super!
+                      &lt;/div>
+                      &lt;div class="me-message">
+                        Bravo, dis!
+                      &lt;/div>
+                    &lt;/div>
+                  </code>
+                </pre>
+
+                <p>la balise qui englobe toutes les balises de message, c'est la balise <code class="language-js">div</code> qui a l'<code class="language-js">id</code> <code class="language-js">"messages"</code>. Dans mon javascript, j'écrirais donc <code class="language-js">let messagesTag = document.getElementById("messages");</code> et du coup, je pourrais utiliser ma variable <code class="language-js">messagesTag</code> comme <code class="language-js">element</code>:</p>
+                <pre>
+                  <code class="language-js">
+                    let messagesTag = document.getElementById("messages");
+                    messagesTag.insertAdjacentHTML(position, text);
+                  </code>
+                </pre>
+              </div>
+            </div>
+
+            <p>
+              <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint5f" role="button" aria-expanded="false" aria-controls="collapseHint5f">Indice <em>text</em></a>
+            </p>
+            <div class="collapse mb-3" id="collapseHint5f">
+              <div class="card card-body">
+                <p></p>
               </div>
             </div>
 
