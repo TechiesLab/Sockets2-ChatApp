@@ -500,6 +500,22 @@
                 <p>Pour la partie <code class="language-js">text</code>, tu dois utiliser une <code class="language-js">string</code>, c'est à dire une suite de caractères. En Javascript, pour avoir une <code class="language-js">string</code>, il suffit d'utiliser les guillemets: <code class="language-js">""</code>. Voici un exemple: <code class="language-js">"salut"</code></p>
                 <p>Par contre, si tu utilises <code class="language-js">"salut"</code> comme <code class="language-js">text</code>, à chaque fois que tu vas appuyer sur le bouton "Envoyer", le message "salut" va s'afficher, même si tu as mis quelque chose d'autre que "salut". Ce que tu veux, c'est récupérer ce que tu as écrit dans le formulaire.</p>
                 <p>Pour cela, tu pourrais utiliser le code utilisé tantôt... <code class="language-js">message.value</code></p>
+                <div class="alert alert-warning" role="alert">
+                  <p>
+                    <i class="fas fa-exclamation-circle"></i><p>
+                      Si tu insères <code class="language-js">message.value</code> directement dans ta string, comme ceci <code class="language-js">"&lt;div class='me-message'>message.value&lt;/div>"</code> tu vas te retrouver avec un drôle de message...
+                    </p>
+
+                    <img src="images/message-value.png">
+                    <p>Pour remédier à ce problème, tu peux utiliser la <em>concaténation</em> en collant deux strings ensemble avec le <code class="language-js">+</code>:</p>
+                    <pre>
+                      <code class="language-js">
+                      let name = "Jacob";
+                      console.log("Mon nom est" + name);
+                      </code>
+                    </pre>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -679,7 +695,7 @@
         <div class="card-header" id="heading7">
           <h2 class="mb-0">
             <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
-              Etape - Allô, allô? Le client parle au serveur!
+              Etape 7 - Allô, allô? Le client parle au serveur!
             </button>
           </h2>
         </div>
