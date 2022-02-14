@@ -695,12 +695,85 @@
         <div class="card-header" id="heading7">
           <h2 class="mb-0">
             <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
-              Etape 7 - Allô, allô? Le client parle au serveur!
+              Etape 7 - ☎️ Allô, allô? Le client parle au serveur!
             </button>
           </h2>
         </div>
         <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#accordionExample">
           <div class="card-body">
+          <p>Maintenant que notre serveur détecte les connections des clients, voyons s'il peut aussi recevoir leurs messages!</p>
+
+          <h3>Partie client - On envoie le message au serveur!</h3>
+
+          <p>Pour l'instant, quand tu écris un message dans ton formulaire et que cliques sur le bouton Envoyer, le message apparaît dans ton chat, mais le serveur n'est pas mis au courant. On va changer cela!</p>
+
+          <p>Dans ton fichier <code class="language-js">script.js</code>, quelle est la fonction qui fait apparaître le message que tu viens de taper dans le chat?</p>
+
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer7a" role="button" aria-expanded="false" aria-controls="collapseAnswer7a">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer7a">
+            <div class="card card-body">
+              <p>C'est la fonction <code class="language-js">addMyMessage()</code></p>
+            </div>
+          </div>
+
+          <p>Dans cette fonction, après le code pour insérer l'HTML <code class="language-js">insertAdjacentHTML()</code>, on va ajouter une ligne pour envoyer le message au serveur:</p>
+
+          <pre>
+            <code class="language-js">
+            socket.emit(EVENT, DATA);
+            </code>
+          </pre>
+          <p>Bien sûr, tu vas devoir remplacer les mots <code class="language-js">EVENT</code> et <code class="language-js">DATA</code> par du code qui fait sens!</p>
+
+          <p>La partie <code class="language-js">EVENT</code>, c'est un peu comme le nom de code de notre événement. Ici, comme on envoie un <em>message</em> au serveur, tu peux l'appeler tout bêtement <code class="language-js">"message"</code>.</p>
+
+          <p>La partie <code class="language-js">DATA</code>, c'est le message qu'on veut envoyer au serveur. Quel est le code qui récupère ce qu'on a écrit dans le formulaire?</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint7a" role="button" aria-expanded="false" aria-controls="collapseHint7a">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint7a">
+            <div class="card card-body">
+              <p><code class="language-js">message.value</code></p>
+            </div>
+          </div>
+
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer7b" role="button" aria-expanded="false" aria-controls="collapseAnswer7b">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer7b">
+            <div class="card card-body">
+              <p>Le tout mis ensemble donne ceci:</p>
+              <pre>
+                <code class="language-js">
+                socket.emit("message", message.value);
+                </code>
+              </pre>
+            </div>
+          </div>
+          <h3>Partie serveur - On reçoit le message!</h3>
+          <p>Du côté du serveur, on va recevoir le message et l'afficher dans la console. Si tu as bien suivi <a href="https://techieslab.github.io/Sockets1-Intro/" target="_blank">l'étape 5 de la fiche d'intro</a>, tu devrais déjà avoir un code pour récupérer les messages des clients:</p>
+
+          <pre>
+            <code class="language-js">
+            connection.on('message', function(data) {
+              // ...
+            });
+            </code>
+          </pre>
+
+          <div class="alert alert-warning" role="alert">
+            <p>
+              <i class="fas fa-exclamation-circle"></i> Note qu'ici aussi, le nom de notre événement est <code class="language-js">'message'</code>. C'est important que du côté serveur et du côté client, on ait le même nom!
+            </p>
+          </div>
+
+          <p>Si tu mets ton client et ton serveur côte à côte, tu vas pouvoir voir le serveur recevoir tes messages en temps réel 💪💪💪:</p>
+
+          <img src="./images/real_time_console.gif" class="img-shadow">
+
 
           </div>
         </div>
